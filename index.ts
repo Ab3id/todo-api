@@ -9,6 +9,7 @@ const app: Express = express();
 const port: String = process.env.PORT ?? '3000';
 
 app.use('/', todos);
+app.use('/todo', todos);
 
 //Custom 404 Handler
 app.use(function (_, res, __) {
@@ -23,7 +24,7 @@ app.use(function (_, res, __) {
 app.use(function (err:HttpException,req:Request, res:Response, next:NextFunction) {
   res.status(err.status || 500);
   res.json({
-      error: err.message
+      error: err.message,
   });
   return;
 });

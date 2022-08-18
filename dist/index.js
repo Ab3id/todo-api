@@ -11,6 +11,7 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : '3000';
 app.use('/', todos_1.default);
+app.use('/todo', todos_1.default);
 //Custom 404 Handler
 app.use(function (_, res, __) {
     res.status(404);
@@ -23,7 +24,7 @@ app.use(function (_, res, __) {
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.json({
-        error: err.message
+        error: err.message,
     });
     return;
 });
