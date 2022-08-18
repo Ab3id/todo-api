@@ -11,6 +11,22 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : '3000';
 app.use('/', todos_1.default);
+//Custom 404 Handler
+app.use(function (_, res, __) {
+    res.status(404);
+    res.json({
+        error: 'Resource Not found 🤯'
+    });
+    return;
+});
+//Custom Error Handler
+app.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+    res.json({
+        error: err.message
+    });
+    return;
+});
 app.listen(port, () => {
     console.log(`⚡️ 🌐 Server is running at https://localhost:${port}`);
 });
