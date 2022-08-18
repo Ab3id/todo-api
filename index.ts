@@ -32,3 +32,6 @@ app.use(function (err:HttpException,req:Request, res:Response, next:NextFunction
 app.listen(port, () => {
   console.log(`⚡️ 🌐 Server is running at https://localhost:${port}`);
 });
+
+
+export default app;
